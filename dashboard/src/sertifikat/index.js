@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -6,14 +6,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Box, Button, CardActions, Container } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from "react-router-dom";
+import { getEvent } from "../repository/dataEvent";
 
-function FeaturedPost(props) {
-  const { posts } = props;
+function IndexSertifikat() {
+    let dataEvents = getEvent();
   return (
     <Container sx={{ py: 8 }} maxWidth="md">
     <Grid container spacing={4}>
-      {posts.map((post) => (
+      {dataEvents.map((post) => (
         <Grid item key={post.id} xs={12} sm={6} md={4}>
           <Card
             sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -24,7 +25,7 @@ function FeaturedPost(props) {
                 // 16:9
                 //pt: '56.25%',
               }}
-              image={post.image}
+              image={""}
               alt={post.imageLabel}
             />
             <CardContent sx={{ flexGrow: 1 }}>
@@ -36,8 +37,6 @@ function FeaturedPost(props) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">LIHAT</Button>
-              <Button size="small">DAFTAR</Button>
               <Box sx={{ml:"10px"}}/>
               <Link
             to={`/serti/${post.linkSerti}`}
@@ -49,19 +48,9 @@ function FeaturedPost(props) {
         </Grid>
       ))}
     </Grid>
+    <Outlet />
   </Container>
   );
 }
 
-FeaturedPost.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageLabel: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default FeaturedPost;
+export default IndexSertifikat;

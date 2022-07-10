@@ -48,4 +48,4 @@ npx create-react-app dashboard
 
 5. INSTALL DEPEDENCY
 npm install @mui/material @emotion/react @emotion/styled @mui/material @mui/styled-engine-sc styled-components @mui/icons-material install @mui/lab @mui/material
-
+npm install react-router-dom@6
